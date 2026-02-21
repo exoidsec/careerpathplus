@@ -193,6 +193,7 @@ const DashboardPage = () => {
 
         {/* Quick Links Sidebar */}
         <div className="space-y-4">
+          <QuickLink icon={<Target />} label="Career Quiz" to="/career-quiz" />
           <QuickLink icon={<Briefcase />} label="Explore Careers" to="/careers" />
           <QuickLink icon={<BookOpen />} label="Build Skills" to="/skills" />
           <QuickLink icon={<GraduationCap />} label="Find Internships" to="/internships" />

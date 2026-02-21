@@ -81,13 +81,21 @@ export type Database = {
         Row: {
           avatar_url: string | null
           bio: string | null
+          career_recommendations: Json | null
           created_at: string
           display_name: string | null
+          education_level: string | null
           field_of_study: string | null
           id: string
+          interests: string[] | null
           last_active_date: string | null
           level: number
+          onboarding_completed: boolean
+          percentage: number | null
+          preferred_city: string | null
           streak_days: number
+          stream: string | null
+          strengths: string[] | null
           updated_at: string
           user_id: string
           xp: number
@@ -95,13 +103,21 @@ export type Database = {
         Insert: {
           avatar_url?: string | null
           bio?: string | null
+          career_recommendations?: Json | null
           created_at?: string
           display_name?: string | null
+          education_level?: string | null
           field_of_study?: string | null
           id?: string
+          interests?: string[] | null
           last_active_date?: string | null
           level?: number
+          onboarding_completed?: boolean
+          percentage?: number | null
+          preferred_city?: string | null
           streak_days?: number
+          stream?: string | null
+          strengths?: string[] | null
           updated_at?: string
           user_id: string
           xp?: number
@@ -109,13 +125,21 @@ export type Database = {
         Update: {
           avatar_url?: string | null
           bio?: string | null
+          career_recommendations?: Json | null
           created_at?: string
           display_name?: string | null
+          education_level?: string | null
           field_of_study?: string | null
           id?: string
+          interests?: string[] | null
           last_active_date?: string | null
           level?: number
+          onboarding_completed?: boolean
+          percentage?: number | null
+          preferred_city?: string | null
           streak_days?: number
+          stream?: string | null
+          strengths?: string[] | null
           updated_at?: string
           user_id?: string
           xp?: number

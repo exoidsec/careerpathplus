@@ -12,10 +12,9 @@ export default defineConfig(({ mode }) => ({
     },
   },
 
-  // ✅ ADD THIS
   preview: {
     host: true,
-    port: process.env.PORT || 10000,
+    port: Number(process.env.PORT) || 10000,
     allowedHosts: [
       "careerpathplus.onrender.com"
     ],
