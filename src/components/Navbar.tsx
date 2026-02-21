@@ -7,10 +7,13 @@ import { useAuth } from "@/contexts/AuthContext";
 const navLinks = [
   { label: "Home", to: "/" },
   { label: "Careers", to: "/careers" },
+  { label: "Colleges", to: "/colleges" },
+  { label: "NGOs", to: "/ngos" },
   { label: "Community", to: "/community" },
+  { label: "Chat", to: "/chat" },
+  { label: "AI Chat", to: "/ai-chat" },
   { label: "Skills", to: "/skills" },
   { label: "Internships", to: "/internships" },
-  { label: "Dashboard", to: "/dashboard" },
 ];
 
 const Navbar = () => {

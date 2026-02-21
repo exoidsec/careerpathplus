@@ -14,6 +14,10 @@ import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import AboutPage from "./pages/AboutPage";
+import CollegesPage from "./pages/CollegesPage";
+import NGOsPage from "./pages/NGOsPage";
+import CommunityChatPage from "./pages/CommunityChatPage";
+import AIChatPage from "./pages/AIChatPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +40,10 @@ const App = () => (
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/about" element={<AboutPage />} />
+              <Route path="/colleges" element={<CollegesPage />} />
+              <Route path="/ngos" element={<NGOsPage />} />
+              <Route path="/chat" element={<CommunityChatPage />} />
+              <Route path="/ai-chat" element={<AIChatPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
