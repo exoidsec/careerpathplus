@@ -2,11 +2,14 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 import { useAuth } from "@/contexts/AuthContext";
+import { useAdmin } from "@/hooks/use-admin";
 
 const navLinks = [
   { label: "Home", to: "/" },
   { label: "Careers", to: "/careers" },
+  { label: "Scholarships", to: "/scholarships" },
   { label: "Colleges", to: "/colleges" },
   { label: "NGOs", to: "/ngos" },
   { label: "Community", to: "/community" },
@@ -20,6 +23,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const { user } = useAuth();
+  const { isAdmin } = useAdmin();
 
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg shadow-nav border-b border-border">
@@ -40,20 +44,14 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
+          <ThemeToggle />
+          {isAdmin && (
+            <Link to="/adminisreal" className="px-3 py-2 rounded-md text-sm font-medium text-destructive hover:bg-destructive/10 transition-colors">Admin</Link>
+          )}
           {user ? (
-            <Link
-              to="/dashboard"
-              className="ml-3 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
-            >
-              Dashboard
-            </Link>
+            <Link to="/dashboard" className="ml-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity">Dashboard</Link>
           ) : (
-            <Link
-              to="/login"
-              className="ml-3 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
-            >
-              Sign In
-            </Link>
+            <Link to="/login" className="ml-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity">Sign In</Link>
           )}
         </nav>
 
@@ -82,11 +80,13 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link
-            to={user ? "/dashboard" : "/login"}
-            onClick={() => setOpen(false)}
-            className="block px-3 py-2.5 rounded-md text-sm font-medium text-primary"
-          >
+          <div className="flex items-center gap-2 px-3 py-2">
+            <ThemeToggle />
+          </div>
+          {isAdmin && (
+            <Link to="/adminisreal" onClick={() => setOpen(false)} className="block px-3 py-2.5 rounded-md text-sm font-medium text-destructive">Admin</Link>
+          )}
+          <Link to={user ? "/dashboard" : "/login"} onClick={() => setOpen(false)} className="block px-3 py-2.5 rounded-md text-sm font-medium text-primary">
             {user ? "Dashboard" : "Sign In"}
           </Link>
         </nav>
