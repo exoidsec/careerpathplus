@@ -19,6 +19,8 @@ import NGOsPage from "./pages/NGOsPage";
 import CommunityChatPage from "./pages/CommunityChatPage";
 import AIChatPage from "./pages/AIChatPage";
 import CareerQuizPage from "./pages/CareerQuizPage";
+import ScholarshipsPage from "./pages/ScholarshipsPage";
+import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -46,7 +48,8 @@ const App = () => (
               <Route path="/chat" element={<CommunityChatPage />} />
               <Route path="/ai-chat" element={<AIChatPage />} />
               <Route path="/career-quiz" element={<CareerQuizPage />} />
-              <Route path="*" element={<NotFound />} />
+              <Route path="/scholarships" element={<ScholarshipsPage />} />
+              <Route path="/adminisreal" element={<AdminPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
