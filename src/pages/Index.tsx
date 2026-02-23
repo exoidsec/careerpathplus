@@ -4,7 +4,7 @@ import {
   TrendingUp, Compass, DollarSign, BarChart3, Bot,
   Users, GraduationCap, Building2, School, Heart,
   Code, Languages, Video, Monitor, Handshake, FileSpreadsheet,
-  ArrowRight
+  ArrowRight, Sparkles
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import Section from "@/components/Section";
@@ -36,33 +36,33 @@ const skillCards = [
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   visible: (i: number) => ({
     opacity: 1, y: 0,
-    transition: { delay: i * 0.07, duration: 0.4 }
+    transition: { delay: i * 0.06, duration: 0.5, ease: "easeOut" as const }
   }),
 };
 
 const CardGrid = ({ cards, linkTo }: { cards: typeof careerCards; linkTo: string }) => (
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
     {cards.map((card, i) => (
       <motion.div
         key={card.title}
         custom={i}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-40px" }}
         variants={fadeUp}
       >
         <Link
           to={linkTo}
-          className="group block rounded-lg border border-border bg-card p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-primary/30"
+          className="group block rounded-xl border border-border bg-card p-6 shadow-card hover:shadow-card-hover hover:border-primary/30 hover:-translate-y-1 transition-all duration-300"
         >
-          <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-3">
+          <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
             {card.icon}
           </div>
-          <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors">{card.title}</h3>
-          <p className="text-sm text-muted-foreground mt-1">{card.desc}</p>
+          <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-200">{card.title}</h3>
+          <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">{card.desc}</p>
         </Link>
       </motion.div>
     ))}
@@ -74,37 +74,57 @@ const Index = () => {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-[0.07] dark:opacity-[0.15]">
           <img src={heroBg} alt="" className="w-full h-full object-cover" />
         </div>
-        <div className="relative container max-w-6xl mx-auto px-4 py-24 md:py-36">
+        <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/50 to-background" />
+        <div className="relative container max-w-6xl mx-auto px-4 py-28 md:py-40">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             className="max-w-2xl"
           >
-            <h1 className="text-4xl md:text-6xl font-extrabold text-foreground leading-tight">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.4 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 border border-primary/20"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              AI-Powered Career Guidance
+            </motion.div>
+            <h1 className="text-4xl md:text-6xl font-extrabold text-foreground leading-[1.1] tracking-tight">
               Discover Your Career Path with{" "}
-              <span className="text-primary">Confidence</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Confidence</span>
             </h1>
-            <p className="text-lg text-muted-foreground mt-5 max-w-lg">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="text-lg text-muted-foreground mt-6 max-w-lg leading-relaxed"
+            >
               AI-powered roadmap, salary trends, job market demand, internships, and personalized growth tracking — all in one place.
-            </p>
-            <div className="flex flex-wrap gap-3 mt-8">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
+              className="flex flex-wrap gap-4 mt-8"
+            >
               <Link
                 to="/signup"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold hover:brightness-110 active:scale-[0.97] shadow-lg shadow-primary/25 transition-all duration-200"
               >
                 Get Started <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/skills"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border bg-card text-foreground font-medium hover:bg-muted transition-colors"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-border bg-card text-foreground font-semibold hover:bg-muted hover:border-primary/30 active:scale-[0.97] transition-all duration-200"
               >
                 Explore Skills
               </Link>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -115,7 +135,7 @@ const Index = () => {
       </Section>
 
       {/* Community */}
-      <Section title="Community & Support" subtitle="Resources, scholarships, and support networks." className="bg-muted/40">
+      <Section title="Community & Support" subtitle="Resources, scholarships, and support networks." className="bg-muted/30">
         <CardGrid cards={communityCards} linkTo="/community" />
       </Section>
 
