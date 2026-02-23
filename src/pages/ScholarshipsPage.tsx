@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { ExternalLink, Search, GraduationCap, Building, Landmark, Heart } from "lucide-react";
+import { ExternalLink, Search, GraduationCap, Building, Landmark, Heart, Accessibility, Users, BookOpen, School } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 interface Scholarship {
@@ -9,16 +9,23 @@ interface Scholarship {
   provider: string;
   category: string;
   eligibility: string | null;
+  income_limit: string | null;
+  amount: string | null;
+  documents: string | null;
   official_link: string;
   description: string | null;
   is_trending: boolean;
 }
 
 const categoryConfig: Record<string, { label: string; icon: React.ReactNode; color: string }> = {
-  central: { label: "Central Government", icon: <Landmark className="w-5 h-5" />, color: "bg-primary/10 text-primary" },
-  maharashtra: { label: "Maharashtra Government", icon: <Building className="w-5 h-5" />, color: "bg-secondary/10 text-secondary" },
+  central: { label: "Central Govt", icon: <Landmark className="w-5 h-5" />, color: "bg-primary/10 text-primary" },
+  maharashtra: { label: "Maharashtra Govt", icon: <Building className="w-5 h-5" />, color: "bg-secondary/10 text-secondary" },
   aicte: { label: "AICTE", icon: <GraduationCap className="w-5 h-5" />, color: "bg-accent/10 text-accent" },
   private: { label: "Private", icon: <Heart className="w-5 h-5" />, color: "bg-destructive/10 text-destructive" },
+  divyang: { label: "Divyang", icon: <Accessibility className="w-5 h-5" />, color: "bg-secondary/10 text-secondary" },
+  minority: { label: "Minority", icon: <Users className="w-5 h-5" />, color: "bg-accent/10 text-accent" },
+  "after-10th": { label: "After 10th", icon: <School className="w-5 h-5" />, color: "bg-primary/10 text-primary" },
+  "after-12th": { label: "After 12th", icon: <BookOpen className="w-5 h-5" />, color: "bg-destructive/10 text-destructive" },
 };
 
 const ScholarshipsPage = () => {
@@ -28,7 +35,7 @@ const ScholarshipsPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.from("scholarships").select("id, name, provider, category, eligibility, official_link, description, is_trending")
+    supabase.from("scholarships").select("id, name, provider, category, eligibility, income_limit, amount, documents, official_link, description, is_trending")
       .order("category").then(({ data }) => {
         if (data) setScholarships(data);
         setLoading(false);
@@ -47,7 +54,7 @@ const ScholarshipsPage = () => {
     <div className="container max-w-6xl mx-auto px-4 py-10">
       <div className="text-center mb-10">
         <h1 className="text-4xl font-bold text-foreground mb-3">🎓 Scholarships Directory</h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto">Find official scholarship portals for Central, Maharashtra state, AICTE, and private scholarships.</p>
+        <p className="text-muted-foreground max-w-2xl mx-auto">Browse 45+ official scholarships — Central, Maharashtra, AICTE, Divyang, Minority, and more.</p>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -90,7 +97,9 @@ const ScholarshipsPage = () => {
                 <div className="flex-1 min-w-0">
                   <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors">{s.name}</h3>
                   <p className="text-sm text-muted-foreground mt-0.5">{s.provider}</p>
-                  {s.eligibility && <p className="text-xs text-muted-foreground mt-1">Eligibility: {s.eligibility}</p>}
+                  {s.eligibility && <p className="text-xs text-muted-foreground mt-1"><span className="font-medium">Eligibility:</span> {s.eligibility}</p>}
+                  {s.amount && <p className="text-xs text-muted-foreground mt-0.5"><span className="font-medium">Amount:</span> {s.amount}</p>}
+                  {s.income_limit && <p className="text-xs text-muted-foreground mt-0.5"><span className="font-medium">Income Limit:</span> {s.income_limit}</p>}
                   {s.description && <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{s.description}</p>}
                 </div>
                 <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1" />
