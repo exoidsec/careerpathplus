@@ -1,4 +1,3 @@
-
 # 🚀 CareerPath
 
 CareerPath is a modern web application built with:
@@ -9,14 +8,14 @@ CareerPath is a modern web application built with:
 
 This guide explains how to install and host the project using:
 
+- 📦 NPM (recommended for development)
 - 🐳 Docker
 - 🦭 Podman
-- 💻 Linux
-- 🪟 Windows
+- 💻 Linux & 🪟 Windows
 
 ---
 
-# 📦 1️⃣ Clone Repository
+# 📦 1️⃣ Clone the Repository
 
 ```bash
 git clone https://github.com/exoidsec/careerpath.git
@@ -31,40 +30,90 @@ Create a `.env` file in the root directory:
 
 ```
 VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_anon_key
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ⚠️ Do NOT commit your `.env` file.
 
 ---
 
-# 🐳 3️⃣ Run with Docker (Linux & Windows)
+# 🧑‍💻 3️⃣ Install & Run Using NPM (Recommended)
+
+## ✅ Install Node.js
+
+Download Node.js (LTS):
+[https://nodejs.org/](https://nodejs.org/)
+
+Check installation:
+
+```bash
+node -v
+npm -v
+```
+
+---
+
+## 📥 Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## ▶️ Start Development Server
+
+```bash
+npm run dev
+```
+
+Open in browser:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 🏗️ Build for Production
+
+```bash
+npm run build
+```
+
+Preview production build:
+
+```bash
+npm run preview
+```
+
+---
+
+# 🐳 4️⃣ Run with Docker (Linux & Windows)
 
 ## Install Docker
 
-### Linux (Fedora)
-
-```bash
-sudo dnf install docker
-sudo systemctl enable --now docker
-sudo usermod -aG docker $USER
-```
-
-### Ubuntu
+Linux (Ubuntu):
 
 ```bash
 sudo apt install docker.io
 sudo systemctl enable --now docker
 ```
 
-### Windows
+Fedora:
 
-Install Docker Desktop:
+```bash
+sudo dnf install docker
+sudo systemctl enable --now docker
+```
+
+Windows:
+Install Docker Desktop from:
 [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
 
 ---
 
-## Build Docker Image
+## 🏗️ Build Docker Image
 
 ```bash
 docker build -t careerpath .
@@ -72,13 +121,13 @@ docker build -t careerpath .
 
 ---
 
-## Run Container
+## ▶️ Run Container
 
 ```bash
 docker run -d -p 8080:80 --name careerpath-app careerpath
 ```
 
-Open in browser:
+Open:
 
 ```
 http://localhost:8080
@@ -86,19 +135,17 @@ http://localhost:8080
 
 ---
 
-# 🦭 4️⃣ Run with Podman (Linux)
-
-Podman is a daemonless Docker alternative.
+# 🦭 5️⃣ Run with Podman (Linux)
 
 ## Install Podman
 
-### Fedora
+Fedora:
 
 ```bash
 sudo dnf install podman
 ```
 
-### Ubuntu
+Ubuntu:
 
 ```bash
 sudo apt install podman
@@ -128,9 +175,9 @@ http://localhost:8080
 
 ---
 
-# 🏗️ 5️⃣ Dockerfile (Production Setup)
+# 🏗️ Dockerfile (Production Setup)
 
-Make sure your project includes this Dockerfile:
+Make sure your project includes:
 
 ```dockerfile
 # Stage 1: Build
@@ -167,16 +214,16 @@ dist
 
 ---
 
-# 🛑 Stop & Remove Container
+# 🛑 Stop Containers
 
-## Docker
+Docker:
 
 ```bash
 docker stop careerpath-app
 docker rm careerpath-app
 ```
 
-## Podman
+Podman:
 
 ```bash
 podman stop careerpath-app
@@ -185,24 +232,14 @@ podman rm careerpath-app
 
 ---
 
-# 🌍 Optional: Deploy to VPS
-
-You can deploy on:
-
-* DigitalOcean
-* Linode
-* Any Linux VPS
-
-Install Docker, clone repo, build, and run.
-
----
-
 # 🧠 Architecture
 
 Frontend: Vite + React
 Backend: Supabase
+Server: Nginx
 Container: Docker / Podman
-Web Server: Nginx
+
+
 
 
 
